@@ -1,4 +1,10 @@
 import csv
+import asyncio
+
+
+async def waiter():
+    await asyncio.sleep(3)
+
 
 info_from_csv = {}
 

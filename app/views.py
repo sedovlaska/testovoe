@@ -1,12 +1,11 @@
 from django.contrib import messages
 from django.shortcuts import render
-from app.utils import get_data_from_csv
+from app.utils import get_data_from_csv, waiter
 from http import HTTPStatus
-import time
 
 
-def index(request):
-    time.sleep(3)
+async def index(request):
+    await waiter()
     data = request.GET.get('get_data')
     if data is None:
         return render(request, 'index.html', status=HTTPStatus.OK)
@@ -17,4 +16,3 @@ def index(request):
     else:
         messages.error(request, f'Запись не найдена')
         return render(request, 'index.html', results, status=HTTPStatus.BAD_REQUEST)
-

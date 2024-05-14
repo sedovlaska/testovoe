@@ -14,7 +14,7 @@
 ### Локально
 1) Создать виртуальное окружение 
 ```
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 ```
 2) Уставновить зависимости
@@ -39,11 +39,7 @@ pytest
 ```
 
 ### Docker
-1) Для прогона всех тестов
+1) Для прогона всех UI тестов в докере
 ```
-bash test.sh
-```
-1) Для прогона только UI тестов
-```
-bash test.sh ui
+sudo bash test.sh
 ```

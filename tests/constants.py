@@ -1,7 +1,7 @@
 from django.conf import settings
 
-local_url = 'http:127.0.0.1:8000'
-docker_url = 'http:127.0.0.1:8003'
+local_url = 'http://127.0.0.1:8000'
+docker_url = 'http://django:8003'
 base_url = docker_url if settings.USE_DOCKER else local_url
 success_message = 'Запись найдена'
 error_message = 'Запись не найдена'
