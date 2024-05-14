@@ -1,0 +1,21 @@
+FROM python:3.9
+
+RUN apt-get update && \
+    apt-get -y install netcat && \
+    apt-get clean
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+RUN mkdir -p /sber_testovoe
+WORKDIR /sber_testovoe
+
+COPY ./req.txt /sber_testovoe/req.txt
+RUN pip install -r req.txt
+
+COPY ./entrypoint.sh /sber_testovoe/entrypoint.sh
+RUN chmod +x /sber_testovoe/entrypoint_selenium.sh
+
+COPY . /sber_testovoe
+
+CMD ["bash", "/partners-portal/tests/test_selenium/entrypoint_selenium.sh"]

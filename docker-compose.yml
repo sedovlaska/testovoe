@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile-django
+    ports:
+      - 8003:8003
+    environment:
+      - DJANGO_SETTINGS_MODULE=app.settings.docker
+
+  selenium:
+    build:
+      context: .
+      dockerfile: Dockerfile-tests
+
+  chrome:
+    image: selenium/standalone-chrome:114.0-chromedriver-114.0
+    ports:
+      - 4444:4444

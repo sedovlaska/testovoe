@@ -1,0 +1,25 @@
+FROM python:3.9
+
+RUN apt-get update && \
+    apt-get -y install netcat && \
+    apt-get clean
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+RUN pip install --upgrade pip
+
+RUN mkdir /sber_testovoe
+WORKDIR /sber_testovoe
+
+COPY ./req.txt /sber_testovoe/req.txt
+RUN pip install -r req.txt
+
+COPY ./entrypoint.sh /sber_testovoe/entrypoint.sh
+RUN chmod +x /sber_testovoe/entrypoint.sh
+
+COPY . /sber_testovoe
+
+RUN mkdir -p /var/log/sber_testovoe && touch /var/log/sber_testovoe/sber_testovoe.log
+
+CMD ["bash", "/sber_testovoe/entrypoint.sh"]
