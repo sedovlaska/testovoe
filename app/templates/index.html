@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <form action="/" method="get" class="form">
+        <label for="get_data">Bank bin: </label>
+        <input id="get_data" type="text" name="get_data" data-cy="input_bin" value="">
+      {% buttons %}
+          <button type="submit" data-cy="submit_button" class="btn btn-primary">SEND</button>
+      {% endbuttons %}
+    </form>
+    {% if results %}
+    <table class="table">
+        <tr>
+            <th data-cy="bin">bin</th>
+            <th data-cy="brand">brand</th>
+            <th data-cy="type">type</th>
+            <th data-cy="category">category</th>
+            <th data-cy="issuer">issuer</th>
+            <th data-cy="alpha_2">alpha_2</th>
+            <th data-cy="alpha_3">alpha_3</th>
+            <th data-cy="country">country</th>
+            <th data-cy="latitude">latitude</th>
+            <th data-cy="longitude">longitude</th>
+            <th data-cy="bank_phone">bank_phone</th>
+            <th data-cy="bank_url">bank_url</th>
+        </tr>
+    <tr>
+        <td>{{ bin }}</td>
+        {% for field in results %}
+            {% if field %}
+                <td>{{ field }}</td>
+            {% else %}
+                <td> --- </td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    </table>
+    {% endif %}
+</head>
+<body>
+
+</body>
+</html>
