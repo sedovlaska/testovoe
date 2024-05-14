@@ -1,23 +1,5 @@
 #!/bin/sh
 
-#echo "Waiting for chrome..."
-#while ! nc -z chrome 4444; do
-#  sleep 0.1
-#done
-#echo "Chrome started"
-#
-#echo "Waiting for firefox..."
-#while ! nc -z firefox 4444; do
-#  sleep 0.1
-#done
-#echo "Firefox started"
-#
-#echo "Waiting for Edge..."
-#while ! nc -z chrome 4444; do
-#  sleep 0.1
-#done
-#echo "Edge started"
-
 echo "Waiting for Django..."
 while ! nc -z django 8003; do
   sleep 0.1
